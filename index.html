@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ name }} | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { margin: 0.5rem 0 0; }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 2rem auto;
+            
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+        h2 {
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 0.5rem;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .project-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .project-card h3 { margin-top: 0; }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{ name }}</h1>
+        <p>{{ tagline }}</p>
+    </header>
+
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <p>{{ about }}</p>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <ul>
+                {% for skill in skills %}
+                <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects">
+                {% for project in projects %}
+                <div class="project-card">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    {% if project.link %}
+                        <a href="{{ project.link }}" target="_blank">View Project</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+
+       <section id="contact">
+        <h2>Contact me</h2>
+
+            <form action="" method="POST" style="max-width:500px;">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+                <button type="submit">Send</button>
+            </form>
+    </section>
+    </div>
+</body>
+</html>
